@@ -1,0 +1,29 @@
+## webpack stuff from https://serverless-stack.com/chapters/add-support-for-es6-es7-javascript.html
+## express / test stuff from https://github.com/FrontendMasters/serverless-with-aws
+
+service: NVRIS
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  profile: default
+  region: us-east-1
+  stage: dev
+
+plugins:
+  - serverless-offline
+  - serverless-webpack
+
+# serverless-webpack configuration
+# Enable auto-packing of external modules
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+
+functions:
+  hello:
+    handler: src/index.handler
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
