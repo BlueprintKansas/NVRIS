@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "express": "^4.16.3",
+    "gm": "^1.23.1",
     "lodash": "^4.17.10",
     "serverless-http": "^1.5.5"
   }

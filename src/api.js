@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/vr/en', jsonParser, async (req, res) => {
-  
+  res.set('Content-Type', 'image/png');
   res.send(form);
 })
 
