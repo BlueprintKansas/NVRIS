@@ -1,5 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+const form = require('./imageManipulation').form
 
 const app = express();
 const jsonParser = bodyParser.json();
@@ -9,8 +10,8 @@ app.get('/', (req, res) => {
 });
 
 app.post('/vr/en', jsonParser, async (req, res) => {
-
-  res.json({message: "ok"})
+  res.set('Content-Type', 'image/png');
+  res.send(form);
 })
 
 app.post('/vr/es', jsonParser, async (req, res) => {
@@ -27,5 +28,7 @@ app.post('/ab/es', jsonParser, async (req, res) => {
 
   res.json({message: "ok"})
 })
+
+app.use(express.static('staticForms'));
 
 export default app;
