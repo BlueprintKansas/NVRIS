@@ -1,8 +1,57 @@
-export const VR = [
-  {name: "01_firstName", x:100, y:100, type:"draw"},
-  {name: "01_lastName", x:1079, y:514, type:"draw"},
-  {name: "02_sample", x:1079, y:514, type:"fill"}
-  //need to look at jakes VR options and update xys
-
-
+export const VREN = [
+  {name: "00_citizen_yes", x1:1059, y1:277, x2:1102, y2:319, type:"fill"},
+  {name: "00_citizen_no", x1:1264, y1:278, x2:1308, y2:319, type:"fill"},
+  {name: "00_eighteenPlus_yes", x1:1059, y1:327, x2:1102, y2:368, type:"fill"},
+  {name: "00_eighteenPlus_no", x1:1265, y1:327, x2:1307, y2:368, type:"fill"},
+  {name: "01_prefix_mr", x1:227, y1:477, x2:270, y2:518, type:"fill"},
+  {name: "01_prefix_mrs", x1:227, y1:530, x2:270, y2:571, type:"fill"},
+  {name: "01_prefix_miss", x1:383, y1:477, x2:426, y2:518, type:"fill"},
+  {name: "01_prefix_ms", x1:382, y1:530, x2:424, y2:571, type:"fill"},
+  {name: "01_suffix_jr", x1:2226, y1:491, x2:2257, y2:520, type:"fill"},
+  {name: "01_suffix_sr", x1:2227, y1:544, x2:2258, y2:573, type:"fill"},
+  {name: "01_suffix_ii", x1:2323, y1:470, x2:2354, y2:500, type:"fill"},
+  {name: "01_suffix_iii", x1:2323, y1:511, x2:2353, y2:540, type:"fill"},
+  {name: "01_suffix_iv", x1:2323, y1:553, x2:2354, y2:581, type:"fill"},
+  {name: "01_firstName", x1:1079, y1:513, x2:1639, y2:586, type:"draw"},
+  {name: "01_lastName", x1:541, y1:513, x2:1067, y2:586, type:"draw"},
+  {name: "01_middleName", x1:1650, y1:513, x2:2206, y2:586, type:"draw"},
+  {name: "02_homeAddress", x1:218, y1:639, x2:1134, y2:711, type:"draw"},
+  {name: "02_aptLot", x1:1142, y1:645, x2:1365, y2:711, type:"draw"},
+  {name: "02_cityTown", x1:1373, y1:645, x2:1852, y2:712, type:"draw"},
+  {name: "02_state", x1:1860, y1:639, x2:2157, y2:712, type:"draw"},
+  {name: "02_zipCode", x1:1264, y1:645, x2:2403, y2:712, type:"draw"},
+  {name: "03_mailAddress", x1:218, y1:767, x2:1365, y2:837, type:"draw"},
+  {name: "03_cityTown", x1:1373, y1:770, x2:1852, y2:838, type:"draw"},
+  {name: "03_state", x1:1860, y1:764, x2:2156, y2:838, type:"draw"},
+  {name: "03_zipCode", x1:2165, y1:770, x2:2404, y2:839, type:"draw"},
+  {name: "04_dob", x1:410, y1:910, x2:750, y2:975, type:"draw"},
+  {name: "05_telephone", x1:850, y1:920, x2:1360, y2:1030, type:"draw"},
+  {name: "06_idNumber", x1:1530, y1:940, x2:2325, y2:1110, type:"draw"},
+  {name: "07_party", x1:245, y1:1130, x2:740, y2:1200, type:"draw"},
+  {name: "08_raceEthnic", x1:850, y1:1130, x2:1345, y2:1200, type:"draw"},
+  {name: "09_month", x1:1420, y1:1490, x2:1545, y2:1540, type:"draw"},
+  {name: "09_day", x1:1630, y1:1490, x2:1740, y2:1540, type:"draw"},
+  {name: "09_year", x1:1840, y1:1490, x2:2030, y2:1540, type:"draw"},
+  {name: "A_prefix_mr", x1:226, y1:1946, x2:266, y2:1986, type:"fill"},
+  {name: "A_prefix_mrs", x1:226, y1:1999, x2:266, y2:2039, type:"fill"},
+  {name: "A_prefix_miss", x1:352, y1:1946, x2:392, y2:1986, type:"fill"},
+  {name: "A_prefix_ms", x1:351, y1:1999, x2:391, y2:2039, type:"fill"},
+  {name: "A_suffix_jr", x1:2229, y1:1954, x2:2259, y2:1984, type:"fill"},
+  {name: "A_suffix_sr", x1:2229, y1:2007, x2:2259, y2:2037, type:"fill"},
+  {name: "A_suffix_ii", x1:2320, y1:1938, x2:2350, y2:1968, type:"fill"},
+  {name: "A_suffix_iii", x1:2320, y1:1978, x2:2350, y2:2008, type:"fill"},
+  {name: "A_suffix_iv", x1:2320, y1:2019, x2:2350, y2:2049, type:"fill"},
+  {name: "A_lastName", x1:490, y1:1980, x2:1230, y2:2060, type:"draw"},
+  {name: "A_middleName", x1:1750, y1:1980, x2:2195, y2:2062, type:"draw"},
+  {name: "A_firstName", x1:1240, y1:1980, x2:1738, y2:2062, type:"draw"},
+  {name: "B_homeAddress", x1:220, y1:2200, x2:1066, y2:2260, type:"draw"},
+  {name: "B_aptLot", x1:1080, y1:2200, x2:1367, y2:2260, type:"draw"},
+  {name: "B_cityTown", x1:1380, y1:2200, x2:1838, y2:2262, type:"draw"},
+  {name: "B_state", x1:1850, y1:2195, x2:2160, y2:2260, type:"draw"},
+  {name: "B_zipCode", x1:2175, y1:2200, x2:2400, y2:2260, type:"draw"},
+  {name: "D_helper", x1:222, y1:2925, x2:2400, y2:3010, type:"draw"}
 ]
+
+
+// Added x1,x2 and y1,y2 to make available some validation function to resize and fit the rendered text in the box.
+// I strongly believe that we need one!

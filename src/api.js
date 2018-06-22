@@ -58,6 +58,4 @@ app.post('/ab/es', jsonParser, async (req, res) => {
   res.json({message: "ok"})
 })
 
-app.use(express.static('staticForms'));
-
 export default app;
