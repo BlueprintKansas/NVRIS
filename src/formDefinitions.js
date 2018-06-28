@@ -95,6 +95,33 @@ export const VRES = [
   {name: "D_helper", x1:144, y1:1958, x2:1600, y2:2018}
 ]
 
+//English Advanced Ballot
+
+export const ABEN = [
+  {name: "01_countyName", x1:581, y1:290, x2:858, y2:333, type:"draw"},
+  {name: "01_forStateName", x1:212, y1:336, x2:506, y2:372, type:"draw"},
+  {name: "01_forCountyName", x1:661, y1:341, x2:959, y2:372, type:"draw"},
+  {name: "02_ksDriversLicenseNumber", x1:1117, y1:536, x2:1585, y2:626, type:"draw"},
+  {name: "03_lastName", x1:105, y1:1032, x2:555, y2:1077, type:"draw"},
+  {name: "03_firstName", x1:606, y1:1031, x2:1056, y2:1077, type:"draw"},
+  {name: "03_middleInitial", x1:1102, y1:1030, x2:1156, y2:1077, type:"draw"},
+  {name: "03_dob", x1:1208, y1:1027, x2:1592, y2:1077, type:"draw"},
+  {name: "03_residentialAddress", x1:101, y1:1106, x2:744, y2:1144, type:"draw"},
+  {name: "03_city", x1:801, y1:1105, x2:1151, y2:1144, type:"draw"},
+  {name: "03_state", x1:1201, y1:1106, x2:1353, y2:1144, type:"draw"},
+  {name: "03_zipCode", x1:1402, y1:1105, x2:1596, y2:1144, type:"draw"},
+  {name: "03_politicalParty_democratic", x1:864, y1:1195, x2:884, y2:1215, type:"fill"},
+  {name: "03_politicalParty_republican", x1:1028, y1:1195, x2:1048, y2:1214, type:"fill"},
+  {name: "04_mailAddress", x1:104, y1:1299, x2:743, y2:1350, type:"draw"},
+  {name: "04_city", x1:802, y1:1298, x2:1151, y2:1350, type:"draw"},
+  {name: "04_state", x1:1200, y1:1298, x2:1353, y2:1350, type:"draw"},
+  {name: "04_zipCode", x1:1402, y1:1298, x2:1596, y2:1350, type:"draw"},
+  {name: "05_actualVotingDate", x1:102, y1:1677, x2:406, y2:1716, type:"draw"},
+  {name: "05_signatureDate", x1:808, y1:1758, x2:1176, y2:1832, type:"draw"},
+  {name: "05_phoneNumber", x1:1231, y1:1758, x2:1591, y2:1832, type:"draw"}
+]
+
+// Nice Tool : http://nicodjimenez.github.io/boxLabel/annotate.html
 
 // Added x1,x2 and y1,y2 to make available some validation function to resize and fit the rendered text in the box.
 // I strongly believe that we need one!

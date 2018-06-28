@@ -20,7 +20,7 @@ app.post('/vr/en', jsonParser, async (req, res) => {
       case "draw":
         let fillText = form_payload[value.name];
         if(fillText){
-          form.fontSize(40);//To be set based on length(form_payload[value.name]), (x1,y1) and (x2,y2).
+          form.fontSize(40);//To be reset based on length(form_payload[value.name]), (x1,y1) and (x2,y2).
           form = form.drawText(value.x1, value.y2, form_payload[value.name])
         }
         break;
@@ -48,7 +48,7 @@ app.post('/vr/es', jsonParser, async (req, res) => {
   _.forEach(VRES, await function(value, itr) {
       let fillText = form_payload[value.name];
       if(fillText){
-        form.fontSize(40);//To be set based on length(form_payload[value.name]), (x1,y1) and (x2,y2).
+        form.fontSize(40);//To be reset based on length(form_payload[value.name]), (x1,y1) and (x2,y2).
         form = form.drawText(value.x1, value.y2, form_payload[value.name])
       }
   });
