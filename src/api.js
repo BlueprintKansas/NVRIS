@@ -1,89 +1,89 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import { VREN, VRES } from './formDefinitions';
-import { _ } from 'lodash';
+import express from "express";
+// import { forEach } from 'lodash';
+import bodyParser from "body-parser";
+import { VREN } from "./formDefinitions";
+import fillForm from "./helpers/fillForm";
+import renderImage from "./helpers/renderImage";
+import base64RenderToFile from "./helpers/base64RenderToFile";
+import getFormElementDimensions from "./helpers/getFormElementDimensions";
+import resizeImage from "./helpers/resizeImage";
+import overlayImagesThenRender from "./helpers/overlayImagesThenRender";
+import imageToBase64 from "./helpers/imageToBase64";
+import deleteTmpFiles from "./helpers/deleteTmpFiles";
+
+const Promise = require("bluebird");
+// const fs = require('fs');
+const gm = require("gm").subClass({ imageMagick: true });
+require("gm-base64");
+
+Promise.promisifyAll(gm.prototype);
+
 const app = express();
 const jsonParser = bodyParser.json();
 
-var gm = require('gm').subClass({ imageMagick: true });
-require('gm-base64');
-
-app.get('/', (req, res) => {
-  res.json({ message: 'ok' });
+app.get("/", (req, res) => {
+  res.json({ message: "ok" });
 });
 
-app.post('/vr/en', jsonParser, async (req, res) => {
-  let form_payload = req.body;
-  let form = gm('https://s3.amazonaws.com/ksvotes/FEDVRENNVRIS.png');
-  _.forEach(VREN, await function(value, itr) {
-    switch(value.type){
-      case "draw":
-        let fillText = form_payload[value.name];
-        if(fillText){
-          form.fontSize(40);//To be reset based on length(form_payload[value.name]), (x1,y1) and (x2,y2).
-          form = form.drawText(value.x1, value.y2, form_payload[value.name])
-        }
-        break;
-      case "fill":
-      if(form_payload[value.name]){
-        form = form.drawRectangle(value.x1, value.y1, value.x2, value.y2)
-      }      
-      break;
-    }
-  });
+app.post("/vr/en", jsonParser, async (req, res) => {
+  const formPayload = req.body;
+  const base = gm("https://s3.amazonaws.com/ksvotes/FEDVRENNVRIS.png");
+  // fill form
+  const filledForm = await fillForm(base, VREN, formPayload);
+  // write filled form to tmp
+  await renderImage(filledForm, "tmp/filled_form.gif");
 
-  form = form.toBase64('gif', await function(err, base64){
-    let img_data = `data:image/gif;charset=utf-8;base64,${base64}`
-    if(err) {console.log(err)};
-    console.log(img_data);
-    //res.json({"img_data": img_data});
-    res.json({"ENG":"form Generated"})
-  });
+  let hasSignature = false;
+  if ("signature" in formPayload) {
+    hasSignature = true;
+    // render signature to file
+    await base64RenderToFile(formPayload.signature, "tmp/signature.png");
 
-})
+    const sigDimensions = getFormElementDimensions(VREN, "signature");
+    await resizeImage(
+      "tmp/signature.png",
+      sigDimensions.width,
+      sigDimensions.height
+    );
 
-app.post('/vr/es', jsonParser, async (req, res) => {
-  let form_payload = req.body;
-  let form = gm('https://s3.amazonaws.com/ksvotes/FEDVRSPANVRIS.png');
-  _.forEach(VRES, await function(value, itr) {
-      let fillText = form_payload[value.name];
-      if(fillText){
-        form.fontSize(fontHelper(value.x1, value.y1, value.x2, value.y2, form_payload[value.name].length, value.name));//To be reset based on length(form_payload[value.name]), (x1,y1) and (x2,y2).
-        form = form.drawText(value.x1, value.y2, form_payload[value.name])
-      }
-  });
+    // overlay signature on filled form
+    await overlayImagesThenRender(
+      "./tmp/signature.png",
+      "./tmp/filled_form.gif",
+      sigDimensions.x1,
+      sigDimensions.y1,
+      "tmp/signed_form.gif"
+    );
+  }
 
-  form = form.toBase64('gif', await function(err, base64){
-    let img_data = `data:image/gif;charset=utf-8;base64,${base64}`
-    if(err) {console.log(err)};
-    console.log(img_data);
-    //res.json({"img_data": img_data});
-    res.json({"SPA":"form Generated"})
-  });
+  // now we are ready to send response
+  let response;
+  if (hasSignature) {
+    response = {
+      ENG: "form Generated",
+      img: await imageToBase64("tmp/signed_form.gif", "gif")
+    };
+  } else {
+    response = {
+      ENG: "form Generated",
+      img: await imageToBase64("tmp/filled_form.gif", "gif")
+    };
+  }
 
-})
+  // delete tmp files
+  await deleteTmpFiles("tmp");
 
-app.post('/ab/en', jsonParser, async (req, res) => {
-  //https://s3.amazonaws.com/ksvotes/AV1NVRIS.png
-  res.json({message: "ok"})
-})
+  res.json(response);
+});
 
-app.post('/ab/es', jsonParser, async (req, res) => {
-  //https://s3.amazonaws.com/ksvotes/AV1NVRIS.png
-  res.json({message: "ok"})
-})
+// app.post('/ab/en', jsonParser, async (req, res) => {
+//   // https://s3.amazonaws.com/ksvotes/AV1NVRIS.png
+//   res.json({ message: 'ok' });
+// });
 
-function fontHelper(x1,y1,x2,y2,l,field)  {
-  let f = ((x2-x1)/l)
-
-  if(f > 60)
-    return 60;
-  else if (f < 20){
-    console.log("Possible ERROR " + field); // Raise an alert to ensure that the writing is Within limits by later checking visually, for Example...
-    //possibleErrors.push(field);
-    return 20;
-  } else
-    return f;
-}
+// app.post('/ab/es', jsonParser, async (req, res) => {
+//   // https://s3.amazonaws.com/ksvotes/AV1NVRIS.png
+//   res.json({ message: 'ok' });
+// });
 
 export default app;
