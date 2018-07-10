@@ -9,6 +9,11 @@ provider:
   profile: default
   region: us-east-1
   stage: dev
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:*
+      Resource: "arn:aws:s3:::ksvotes/*"
 
 plugins:
   - serverless-offline

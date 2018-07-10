@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
 
 app.post("/vr/en", jsonParser, async (req, res) => {
   const formPayload = req.body;
-  const base = gm("https://s3.amazonaws.com/ksvotes/FEDVRENNVRIS.png");
+  const base = gm("FEDVRENNVRIS.png");
   // fill form
   const filledForm = await fillForm(base, VREN, formPayload);
   // write filled form to tmp
