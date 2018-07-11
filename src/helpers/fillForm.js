@@ -3,9 +3,7 @@ import { forEach } from "lodash";
 export default (base, formDefinition, bodyPayload) =>
   new Promise(resolve => {
     let iBase = base;
-    // let signature_definition
     forEach(formDefinition, value => {
-      console.log(value);
       switch (value.type) {
         case "draw":
           if (bodyPayload[value.name]) {
