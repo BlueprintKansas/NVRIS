@@ -5,6 +5,7 @@ export default (base, formDefinition, bodyPayload) =>
     let iBase = base;
     // let signature_definition
     forEach(formDefinition, value => {
+      console.log(value);
       switch (value.type) {
         case "draw":
           if (bodyPayload[value.name]) {
@@ -15,6 +16,15 @@ export default (base, formDefinition, bodyPayload) =>
         case "fill":
           if (bodyPayload[value.name]) {
             iBase = iBase.drawRectangle(value.x1, value.y1, value.x2, value.y2);
+          }
+          break;
+        case "circle":
+          if (bodyPayload[value.name]) {
+            // iBase = iBase.drawRectangle(value.x1, value.y1, value.x2, value.y2);
+            iBase = iBase
+              .stroke("#000000", 0)
+              .fill("rgba( 255, 255, 255 , 0 )")
+              .drawRectangle(value.x1, value.y1, value.x2, value.y2);
           }
           break;
         default:
