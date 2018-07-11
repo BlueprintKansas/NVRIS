@@ -57,13 +57,13 @@ export default async (req, res) => {
   let response;
   if (hasSignature) {
     response = {
-      ENG: "form Generated",
-      img: await imageToBase64("/tmp/signed_form.gif", "gif")
+      VR_ES: "form Generated",
+      img: await imageToBase64("/tmp/signed_form.gif", "png")
     };
   } else {
     response = {
-      ENG: "form Generated",
-      img: await imageToBase64("/tmp/filled_form.gif", "gif")
+      VR_ES: "form Generated",
+      img: await imageToBase64("/tmp/filled_form.gif", "png")
     };
   }
 
