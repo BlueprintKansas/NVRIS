@@ -1,6 +1,6 @@
 import request from "request";
 
-import VRES from "../formDefinitions/VRES";
+import KSAV1 from "../formDefinitions/KSAV1";
 import fillForm from "../helpers/fillForm";
 import renderImage from "../helpers/renderImage";
 import base64RenderToFile from "../helpers/base64RenderToFile";
@@ -22,11 +22,9 @@ Promise.promisifyAll(gm.prototype);
 export default async (req, res) => {
   const formPayload = req.body;
 
-  const base = gm(
-    request("https://s3.amazonaws.com/ksvotes/FEDVRENNVRIS_SP.png")
-  );
+  const base = gm(request("https://s3.amazonaws.com/ksvotes/AV1NVRIS.png"));
   // fill form
-  const filledForm = await fillForm(base, VRES, formPayload);
+  const filledForm = await fillForm(base, KSAV1, formPayload);
   // write filled form to tmp
   await renderImage(filledForm, "/tmp/filled_form.gif");
 
@@ -36,7 +34,7 @@ export default async (req, res) => {
     // render signature to file
     await base64RenderToFile(formPayload.signature, "/tmp/signature.png");
 
-    const sigDimensions = getFormElementDimensions(VRES, "signature");
+    const sigDimensions = getFormElementDimensions(KSAV1, "signature");
     await resizeImage(
       "/tmp/signature.png",
       sigDimensions.width,
