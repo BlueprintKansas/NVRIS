@@ -8,12 +8,11 @@ provider:
   runtime: nodejs8.10
   profile: default
   region: us-east-1
-  stage: dev
-  iamRoleStatements:
-    - Effect: Allow
-      Action:
-        - s3:*
-      Resource: "arn:aws:s3:::ksvotes/*"
+  # iamRoleStatements:
+  #   - Effect: Allow
+  #     Action:
+  #       - s3:*
+  #     Resource: "arn:aws:s3:::ksvotes/*"
 
 plugins:
   - serverless-offline
