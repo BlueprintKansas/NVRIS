@@ -8,7 +8,7 @@ import KSAV2route from "./routes/KSAV2";
 import FLEXroute from "./routes/FLEX";
 
 const app = express();
-const jsonParser = bodyParser.json();
+const jsonParser = bodyParser.json({limit: '50mb'});
 
 app.get("/", (req, res) => {
   res.json({ message: "ok" });
