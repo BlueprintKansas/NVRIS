@@ -41,6 +41,7 @@
     "gm-base64": "^1.1.1",
     "lodash": "^4.17.10",
     "request": "^2.87.0",
-    "serverless-http": "^1.5.5"
+    "serverless-http": "^1.5.5",
+    "sls": "^0.1.0"
   }
 }
