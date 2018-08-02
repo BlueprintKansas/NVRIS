@@ -6,7 +6,7 @@ service: NVRIS
 provider:
   name: aws
   runtime: nodejs8.10
-  profile: default
+  profile: nvris-dev
   region: us-east-1
   # iamRoleStatements:
   #   - Effect: Allow
