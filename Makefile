@@ -8,4 +8,10 @@ deps:
 	yarn install
 	npm -g install serverless
 
+deploy-dev:
+	sls deploy --stage dev
+
+deploy-prod:
+	sls deploy --stage prod
+
 .PHONY: run test deps
