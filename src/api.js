@@ -13,7 +13,7 @@ import VRES from "./formDefinitions/VRES";
 import VREN from "./formDefinitions/VREN";
 
 const app = express();
-const jsonParser = bodyParser.json({ limit: "50mb" });
+const jsonParser = bodyParser.json({ limit: "50mb", extended: true });
 
 app.get("/", (req, res) => {
   res.json({ message: "ok" });
