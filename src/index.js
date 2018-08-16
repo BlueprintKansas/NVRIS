@@ -1,3 +1,5 @@
+require('newrelic')
+
 import serverless from "serverless-http";
 import api from "./api";
 
