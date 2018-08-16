@@ -1,3 +1,5 @@
+let newrelic = require('newrelic');
+
 import express from "express";
 import bodyParser from "body-parser";
 
@@ -14,6 +16,8 @@ import VREN from "./formDefinitions/VREN";
 
 const app = express();
 const jsonParser = bodyParser.json({ limit: "50mb", extended: true });
+
+app.locals.newrelic = newrelic;
 
 app.get("/", (req, res) => {
   res.json({ message: "ok" });
