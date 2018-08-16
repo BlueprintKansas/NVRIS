@@ -1,3 +1,5 @@
+let newrelic = require('newrelic');
+
 import express from "express";
 import bodyParser from "body-parser";
 
@@ -9,6 +11,8 @@ import FLEXroute from "./routes/FLEX";
 
 const app = express();
 const jsonParser = bodyParser.json({limit: '50mb', extended: true});
+
+app.locals.newrelic = newrelic;
 
 app.get("/", (req, res) => {
   res.json({ message: "ok" });
