@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 let newrelic = require('newrelic');
 
 import express from "express";
