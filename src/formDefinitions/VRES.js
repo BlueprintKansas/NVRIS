@@ -113,7 +113,7 @@ export default [
   { name: "06_idNumber", x1: 964, y1: 619, x2: 1578, y2: 714, type: "draw" },
   { name: "07_party", x1: 215, y1: 720, x2: 493, y2: 765, type: "draw" },
   { name: "08_raceEthnic", x1: 610, y1: 721, x2: 898, y2: 766, type: "draw" },
-  { name: "signature", x1: 993, y1: 795, x2: 1455, y2: 869, type: "overlay" },
+  { name: "signature", x1: 1013, y1: 795, x2: 1455, y2: 869, type: "overlay" },
   { name: "09_month", x1: 1017, y1: 928, x2: 1113, y2: 963, type: "draw" },
   { name: "09_day", x1: 1162, y1: 927, x2: 1277, y2: 964, type: "draw" },
   { name: "09_year", x1: 1318, y1: 930, x2: 1450, y2: 961, type: "draw" },

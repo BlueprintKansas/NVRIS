@@ -57,8 +57,8 @@ export default [
     type: "draw"
   },
   { name: "mailing_zip", x1: 1398, y1: 1299, x2: 1600, y2: 1349, type: "draw" },
-  { name: "election_date", x1: 101, y1: 1679, x2: 408, y2: 1718, type: "draw" },
-  { name: "signature", x1: 301, y1: 1738, x2: 764, y2: 1833, type: "overlay" },
+  { name: "election_date", x1: 95, y1: 1679, x2: 408, y2: 1718, type: "draw" },
+  { name: "signature", x1: 321, y1: 1738, x2: 764, y2: 1833, type: "overlay" },
   {
     name: "signature_date",
     x1: 799,

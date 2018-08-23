@@ -66,7 +66,7 @@ export default [
     type: "draw"
   },
   { name: "mailing_zip", x1: 1212, y1: 1420, x2: 1620, y2: 1461, type: "draw" },
-  { name: "signature", x1: 272, y1: 1902, x2: 854, y2: 1978, type: "overlay" },
+  { name: "signature", x1: 292, y1: 1902, x2: 854, y2: 1978, type: "overlay" },
   {
     name: "signature_date",
     x1: 896,

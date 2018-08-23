@@ -78,5 +78,5 @@ export default [
   { name: "B_state", x1: 1232, y1: 1464, x2: 1439, y2: 1506, type: "draw" },
   { name: "B_zipCode", x1: 1447, y1: 1464, x2: 1599, y2: 1506, type: "draw" },
   { name: "D_helper", x1: 144, y1: 1945, x2: 1600, y2: 2007, type: "draw" },
-  { name: "signature", x1: 836, y1: 815, x2: 1578, y2: 929, type: "overlay" }
+  { name: "signature", x1: 856, y1: 815, x2: 1578, y2: 929, type: "overlay" }
 ];
