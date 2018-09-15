@@ -13,3 +13,14 @@ National Voting Registration Imaging Service
 ```
 curl -XPOST -H 'Content-Type: application/json' --data @exampleFlexPayload.json the-nvris-url/vr/en
 ```
+
+## On OSX
+
+Ensure you are using the latest freetype and imagemagick. 
+
+```
+brew update
+brew upgrade freetype
+brew upgrade imagemagick
+```
+
