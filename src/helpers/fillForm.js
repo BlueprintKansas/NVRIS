@@ -7,7 +7,7 @@ export default (base, formDefinition, bodyPayload) =>
       switch (value.type) {
         case "draw":
           if (bodyPayload[value.name]) {
-            iBase.fontSize(40); // To be reset based on length(form_payload[value.name]), (x1,y1) and (x2,y2).
+            iBase.fontSize(20); // To be reset based on length(form_payload[value.name]), (x1,y1) and (x2,y2).
             iBase = iBase.drawText(value.x1, value.y2, bodyPayload[value.name]);
           }
           break;
