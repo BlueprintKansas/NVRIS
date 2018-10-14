@@ -29,8 +29,10 @@ export default async (req, res) => {
   await renderImage(filledForm, "/tmp/filled_form.gif");
 
   let hasSignature = false;
-  if ("signature" in formData) {
+  let imgPath = "/tmp/filled_form.gif";
+  if ("signature" in formPayload) {
     hasSignature = true;
+    imgPath = "/tmp/signed_form.gif";
     // render signature to file
     await base64RenderToFile(formData.signature, "/tmp/signature.png");
 
@@ -55,18 +57,12 @@ export default async (req, res) => {
   }
 
   // now we are ready to send response
-  let response;
-  if (hasSignature) {
-    response = {
-      VR_ES: "form Generated",
-      img: await imageToBase64("/tmp/signed_form.gif", "png")
-    };
-  } else {
-    response = {
-      VR_ES: "form Generated",
-      img: await imageToBase64("/tmp/filled_form.gif", "png")
-    };
-  }
+  let imgB64 = await imageToBase64(imgPath, "png");
+  console.log(formPayload["uuid"]+": imgPath="+imgPath+" hasSignature:"+hasSignature+" img:"+imgB64.length+" bytes");
+  let response = {
+    KSAV1: "form Generated",
+    img: imgB64
+  };
 
   // delete tmp files
   await deleteTmpFiles("/tmp");
