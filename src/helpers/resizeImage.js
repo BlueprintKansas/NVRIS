@@ -10,10 +10,10 @@ export default (path, width, height) =>
       .resize(width, height)
       .write(path, (err) => {
         if (err) {
-          console.log(err);
+          console.log("ERROR: ", err);
           reject(err);
         } else {
-          console.log(" signature resized! ");
+          console.log("signature " + path + " resized to " + width + " x " + height);
           resolve();
         }
       });

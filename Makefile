@@ -1,8 +1,8 @@
 run:
-	sls offline start --port 4500
+	sls offline start --port 4500 --dontPrintOutput
 
 test:
-	npm run test
+	perl test.pl
 
 deps:
 	yarn install
