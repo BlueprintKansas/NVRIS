@@ -14,10 +14,10 @@ export default (topImagePath, bottomImagePath, x, y, outImagePath) =>
       .in(bottomImagePath)
       .write(outImagePath, (err) => {
         if (err) {
-          console.log(err);
+          console.log("ERROR: ", err);
           reject(err);
         } else {
-          console.log(" hooray! ");
+          console.log("composite image rendered to ", outImagePath);
           resolve();
         }
       });
