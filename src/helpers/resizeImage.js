@@ -13,7 +13,7 @@ export default (path, width, height) =>
           console.log("ERROR: ", err);
           reject(err);
         } else {
-          console.log("signature " + path + " resized to " + width + " x " + height);
+          console.log(path + " resized to " + width + " x " + height);
           resolve();
         }
       });
