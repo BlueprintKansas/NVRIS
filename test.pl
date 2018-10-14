@@ -10,8 +10,9 @@ sub run_it {
 }
 
 my %tests = (
-    'test-vr-en-payload.json' => '/vr/en',
-    'test-ab-en-payload.json' => '/av/ksav1',
+    'test-vr-en-payload.json'       => '/vr/en',
+    'test-vr-en-nosig-payload.json' => '/vr/en',
+    'test-ab-en-payload.json'       => '/av/ksav1',
 );
 
 for my $payload ( sort keys %tests ) {
