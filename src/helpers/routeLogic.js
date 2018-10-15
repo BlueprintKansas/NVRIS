@@ -14,8 +14,6 @@ const gm = require("gm").subClass({ imageMagick: true });
 require("gm-base64");
 
 export default async (formDefinition, formData) => {
-  // console.log("!! form def", formDefinition);
-  console.log("!!!", formDefinition.baseImg);
   const base = gm(request(formDefinition.baseImg));
   // fill form
   const filledForm = await fillForm(base, formDefinition.fields, formData);
@@ -23,8 +21,10 @@ export default async (formDefinition, formData) => {
   await renderImage(filledForm, "/tmp/filled_form.gif");
 
   let hasSignature = false;
+  let imgPath = "/tmp/filled_form.gif";
   if ("signature" in formData) {
     hasSignature = true;
+    imgPath = "/tmp/signed_form.gif";
     // render signature to file
     await base64RenderToFile(formData.signature, "/tmp/signature.png");
 
@@ -50,18 +50,14 @@ export default async (formDefinition, formData) => {
 
   // now we are ready to send response
   let response;
-  if (hasSignature) {
-    response = {
-      message: "form Generated",
-      img: await imageToBase64("/tmp/signed_form.gif", "png")
-    };
-  } else {
-    response = {
-      message: "form Generated",
-      img: await imageToBase64("/tmp/filled_form.gif", "png")
-    };
-  }
-  // console.log(response);
+  let imgB64 = await imageToBase64(imgPath, "png");
+  console.log(formPayload["uuid"]+": imgPath="+imgPath+" hasSignature:"+hasSignature+" img:"+imgB64.length+" bytes");
+
+  let response = {
+    "msg": "form generated from " + formDefinition.baseImg,
+    "img": imgB64
+  };
+
   // delete tmp files
   await deleteTmpFiles("/tmp");
 
