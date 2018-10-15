@@ -5,11 +5,6 @@ let newrelic = require('newrelic');
 import express from "express";
 import bodyParser from "body-parser";
 
-// import VRENroute from "./routes/VREN";
-// import VRESroute from "./routes/VRES";
-// import KSAV1route from "./routes/KSAV1";
-// import KSAV2route from "./routes/KSAV2";
-// import FLEXroute from "./routes/FLEX";
 import routeLogic from "./helpers/routeLogic";
 import KSAV1 from "./formDefinitions/KSAV1";
 import KSAV2 from "./formDefinitions/KSAV2";
