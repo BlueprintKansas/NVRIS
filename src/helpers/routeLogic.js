@@ -49,9 +49,8 @@ export default async (formDefinition, formData) => {
   }
 
   // now we are ready to send response
-  let response;
   let imgB64 = await imageToBase64(imgPath, "png");
-  console.log(formPayload["uuid"]+": imgPath="+imgPath+" hasSignature:"+hasSignature+" img:"+imgB64.length+" bytes");
+  console.log(formData["uuid"]+": imgPath="+imgPath+" hasSignature:"+hasSignature+" img:"+imgB64.length+" bytes");
 
   let response = {
     "msg": "form generated from " + formDefinition.baseImg,
