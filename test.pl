@@ -15,6 +15,8 @@ my %tests = (
     'test-ab-en-payload.json'       => '/av/ksav1',
 );
 
+my $base64decode = $^O eq 'linux' ? '-d' : '-D';
+
 for my $payload ( sort keys %tests ) {
     ( my $png = $payload ) =~ s/\.json/.png/;
     my $path = $tests{$payload};
@@ -23,7 +25,7 @@ for my $payload ( sort keys %tests ) {
         qq{curl -s -XPOST -H 'Content-Type: application/json' --data \@$payload http://localhost:4500$path > $tmp}
     );
     run_it(
-        qq{jq .img < $tmp | perl -n -e 's/"data:image\\/png;base64,|"//g; print' | base64 -D > $png}
+        qq{jq .img < $tmp | perl -n -e 's/"data:image\\/png;base64,|"//g; print' | base64 $base64decode > $png}
     );
     print "PNG saved in $png\n";
 }
