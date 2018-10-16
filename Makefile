@@ -1,6 +1,9 @@
 run:
 	sls offline start --port 4500 --dontPrintOutput
 
+run-test-server:
+	sls offline start --port 4501 --dontPrintOutput
+
 test:
 	perl test.pl
 
