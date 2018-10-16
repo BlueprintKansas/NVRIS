@@ -4,6 +4,10 @@ notifications:
 language: node_js
 node_js:
  - "10"
+cache:
+  yarn: true
+  directories:
+    - "node_modules"
 before_install:
  - curl -L https://cpanmin.us | sudo perl - App::cpanminus
  - sudo cpanm File::Slurper Data::Dump JSON MIME::Base64 HTTP::Tiny
