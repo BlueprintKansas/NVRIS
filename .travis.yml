@@ -2,6 +2,8 @@ sudo: false  # http://docs.travis-ci.com/user/migrating-from-legacy/
 notifications:
   email: false
 language: node_js
+node_js:
+ - "10"
 before_install:
  - curl -L https://cpanmin.us | sudo perl - App::cpanminus
  - sudo cpanm File::Slurper Data::Dump JSON MIME::Base64 HTTP::Tiny
