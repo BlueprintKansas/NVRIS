@@ -28,4 +28,6 @@ for my $payload ( sort keys %tests ) {
         qq{jq .img < $tmp | perl -n -e 's/"data:image\\/png;base64,|"//g; print' | base64 $base64decode > $png}
     );
     print "PNG saved in $png\n";
+
+    run_it("rm $tmp");
 }
