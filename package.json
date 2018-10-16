@@ -31,7 +31,7 @@
   },
   "scripts": {
     "dev": "sls offline start --port 4500",
-    "test": "jest"
+    "test": "make test"
   },
   "dependencies": {
     "bluebird": "^3.5.1",
