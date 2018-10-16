@@ -69,11 +69,24 @@ if ($pid) {
     my $server_pid = fork() or exec("make run-test-server");
     print
         "Master test process $$ waiting for server $server_pid and client $pid to finish\n";
-    waitpid( $pid, 0 );
+    my $rc = 0;
+    if ( waitpid( $pid, 0 ) > 0 ) {
+        my ( $rc, $sig, $core ) = ( $? >> 8, $? & 127, $? & 128 );
+        if ($core) {
+            print "$pid dumped core\n";
+        }
+        elsif ( $sig == 9 ) {
+            print "$pid was murdered!\n";
+        }
+        else {
+            print "$pid returned $rc";
+            print( $sig ? " after receiving signal $sig" : "\n" );
+        }
+    }
     print "Child process finished\n";
     kill 'TERM', $server_pid;
     print "Sent TERM to $server_pid\n";
-    exit();
+    exit($rc);
 }
 else {
     print "Waiting for server to start ...\n";
