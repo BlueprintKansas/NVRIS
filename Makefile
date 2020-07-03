@@ -14,4 +14,8 @@ deploy-dev:
 deploy-prod:
 	sls deploy --stage prod
 
-.PHONY: run test deps
+cleanup-test:
+	rm -f test-*.json-out.json
+	rm -f test-*payload.png
+
+.PHONY: run test deps cleanup-test

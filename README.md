@@ -16,11 +16,25 @@ curl -XPOST -H 'Content-Type: application/json' --data @exampleFlexPayload.json 
 
 ## On OSX
 
-Ensure you are using the latest freetype and imagemagick. 
+Ensure you are using the latest freetype and imagemagick.
 
 ```
 brew update
 brew upgrade freetype
 brew upgrade imagemagick
 ```
+
+
+## Local Docker setup
+
+NodeJS and it's dependancies can be a bit of a pain on OSX.  To help reduce
+future development friction, we setup a Docker environment.
+
+To get nvris running locally you can just run:
+
+```shell
+$ docker-compose up
+```
+
+Which will run nvris and expose it on `http://localhost:4500/`.
 
