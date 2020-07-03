@@ -1,6 +1,5 @@
 import request from "request";
 
-// import VRES from "../formDefinitions/VRES";
 import fillForm from "../helpers/fillForm";
 import renderImage from "../helpers/renderImage";
 import base64RenderToFile from "../helpers/base64RenderToFile";
@@ -10,10 +9,8 @@ import overlayImagesThenRender from "../helpers/overlayImagesThenRender";
 import imageToBase64 from "../helpers/imageToBase64";
 import deleteTmpFiles from "../helpers/deleteTmpFiles";
 
-// const path = require("path");
 
 const Promise = require("bluebird");
-// const fs = require('fs');
 const gm = require("gm").subClass({ imageMagick: true });
 require("gm-base64");
 

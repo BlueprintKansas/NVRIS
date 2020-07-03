@@ -10,10 +10,7 @@ import overlayImagesThenRender from "../helpers/overlayImagesThenRender";
 import imageToBase64 from "../helpers/imageToBase64";
 import deleteTmpFiles from "../helpers/deleteTmpFiles";
 
-// const path = require("path");
-
 const Promise = require("bluebird");
-// const fs = require('fs');
 const gm = require("gm").subClass({ imageMagick: true });
 require("gm-base64");
 
@@ -57,7 +54,7 @@ export default async (req, res) => {
 
   // now we are ready to send response
   let imgB64 = await imageToBase64(imgPath, "png");
-  console.log(formPayload["uuid"]+": imgPath="+imgPath+" hasSignature:"+hasSignature+" img:"+imgB64.length+" bytes");
+  console.log(formPayload["uuid"] + ": imgPath=" + imgPath + " hasSignature:" + hasSignature + " img:" + imgB64.length + " bytes");
   let response = {
     KSAV2: "form Generated",
     img: imgB64

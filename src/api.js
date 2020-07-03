@@ -12,7 +12,7 @@ import KSAV2route from "./routes/KSAV2";
 import FLEXroute from "./routes/FLEX";
 
 const app = express();
-const jsonParser = bodyParser.json({limit: '50mb', extended: true});
+const jsonParser = bodyParser.json({ limit: '50mb', extended: true });
 
 app.locals.newrelic = newrelic;
 
