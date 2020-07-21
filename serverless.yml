@@ -31,6 +31,7 @@ functions:
   hello:
     handler: src/index.handler
     layers:
+# version 2 is intentional. later versions are broken.
       - arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:layer:image-magick:2
     timeout: 10 # optional, in seconds, default is 6
     events:
