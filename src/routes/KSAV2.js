@@ -10,21 +10,22 @@ import overlayImagesThenRender from "../helpers/overlayImagesThenRender";
 import imageToBase64 from "../helpers/imageToBase64";
 import deleteTmpFiles from "../helpers/deleteTmpFiles";
 
-// const path = require("path");
-
 const Promise = require("bluebird");
-// const fs = require('fs');
 const gm = require("gm").subClass({ imageMagick: true });
 require("gm-base64");
+const fs = require("fs");
 
 Promise.promisifyAll(gm.prototype);
 
 export default async (req, res) => {
   const formPayload = req.body;
 
+  const fontFile = '/tmp/helvetica.ttf';
+  request('https://ksvotes-v2.s3.amazonaws.com/helvetica.ttf').pipe(fs.createWriteStream(fontFile));
+
   const base = gm(
     request("https://s3.amazonaws.com/ksvotes/PERMVOTINGSTATUS.png")
-  );
+  ).font(fontFile);
   // fill form
   const filledForm = await fillForm(base, KSAV2, formPayload);
   // write filled form to tmp
@@ -57,7 +58,7 @@ export default async (req, res) => {
 
   // now we are ready to send response
   let imgB64 = await imageToBase64(imgPath, "png");
-  console.log(formPayload["uuid"]+": imgPath="+imgPath+" hasSignature:"+hasSignature+" img:"+imgB64.length+" bytes");
+  console.log(formPayload["uuid"] + ": imgPath=" + imgPath + " hasSignature:" + hasSignature + " img:" + imgB64.length + " bytes");
   let response = {
     KSAV2: "form Generated",
     img: imgB64

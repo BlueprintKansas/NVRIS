@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+
+  nvris:
+    build: .
+    ports:
+        - "4500:4500"
+    stop_signal: SIGKILL
