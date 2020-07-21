@@ -17,7 +17,20 @@ const jsonParser = bodyParser.json({ limit: '50mb', extended: true });
 app.locals.newrelic = newrelic;
 
 app.get("/", (req, res) => {
-  res.json({ message: "ok" });
+  const { exec } = require("child_process");
+  exec("convert -list font -debug configure", (error, stdout, stderr) => {
+    let err = error ? error.message : "";
+    console.log(`error:${err} stdout:${stdout} stderr:${stderr}`);
+    res.json({ message: "ok", error: err, stderr: stderr, stdout: stdout });
+  });
+});
+app.get("/im", (req, res) => {
+  const { exec } = require("child_process");
+  exec("convert -list configure", (error, stdout, stderr) => {
+    let err = error ? error.message : "";
+    console.log(`error:${err} stdout:${stdout} stderr:${stderr}`);
+    res.json({ message: "ok", error: err, stderr: stderr, stdout: stdout });
+  });
 });
 
 app.post("/vr/en", jsonParser, VRENroute);

@@ -13,13 +13,17 @@ import deleteTmpFiles from "../helpers/deleteTmpFiles";
 const Promise = require("bluebird");
 const gm = require("gm").subClass({ imageMagick: true });
 require("gm-base64");
+const fs = require("fs");
 
 Promise.promisifyAll(gm.prototype);
 
 export default async (req, res) => {
   const { formData, formDefinition } = req.body;
 
-  const base = gm(request(formDefinition.baseImg));
+  const fontFile = '/tmp/helvetica.ttf';
+  request('https://ksvotes-v2.s3.amazonaws.com/helvetica.ttf').pipe(fs.createWriteStream(fontFile));
+
+  const base = gm(request(formDefinition.baseImg)).font(fontFile);
   // fill form
   const filledForm = await fillForm(base, formDefinition.fields, formData);
   // write filled form to tmp

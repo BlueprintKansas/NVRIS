@@ -20,7 +20,7 @@ for my $payload ( sort keys %tests ) {
     my $path = $tests{$payload};
     my $tmp  = "$payload-out.json";
     run_it(
-        qq{curl -s -XPOST -H 'Content-Type: application/json' --data \@$payload http://localhost:4500$path > $tmp}
+        qq{curl -s -XPOST -H 'Content-Type: application/json' --data \@$payload http://localhost:4500/dev$path > $tmp}
     );
     run_it(
         qq{jq .img < $tmp | perl -n -e 's/"data:image\\/png;base64,|"//g; print' | base64 -D > $png}
